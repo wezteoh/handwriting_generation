@@ -44,6 +44,6 @@ python train.py --task 'synthesis'
 
 3. Some examples of the results I obtained:
 
-![Alt text](examples/unconditional_generation?raw=true "Unconditional Generation")
+![Alt text](examples/unconditional_generation.png?raw=true "Unconditional Generation")
 
-![Alt text](examples/conditional_generation?raw=true "Conditional Generation")
+![Alt text](examples/conditional_generation.png?raw=true "Conditional Generation")
