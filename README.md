@@ -19,4 +19,31 @@ python train.py --task 'synthesis'
 3. The trained models will be saved to the folder 'save'. Change the file name in generate.py and visualize the results on Results.ipynb.
 
 ### The results obtained
-1. The results shown here are obtained by training with the default configurations for 50 epochs and 60 epchs respectively for each task.
+1. Default Archintecture: 2-layer LSTM network with skip connections. A window layer is implemented for the handwriting synthesis task as adapted from Alex Graves' work.
+
+2. The results shown here are obtained by training the with the default configurations for 50 epochs and 60 epchs respectively for each task. The training is surprisingly stable even with 800 timesteps. Learning rate annealing is implemented but not used by default.
+
+```
+    parser.add_argument('--task', type=str, default='rand_write',
+                        help='"rand_write" or "synthesis"')
+    parser.add_argument('--cell_size', type=int, default=400,
+                        help='size of LSTM hidden state')
+    parser.add_argument('--batch_size', type=int, default=50,
+                        help='minibatch size')
+    parser.add_argument('--timesteps', type=int, default=800,
+                        help='LSTM sequence length')
+    parser.add_argument('--num_epochs', type=int, default=50,
+                        help='number of epochs')
+    parser.add_argument('--learning_rate', type=float, default=8E-4,
+                        help='learning rate')
+    parser.add_argument('--num_clusters', type=int, default=20,
+                        help='number of gaussian mixture clusters for stroke prediction')
+    parser.add_argument('--K', type=int, default=10,
+                        help='number of attention clusters on text input')
+```
+
+3. Some examples of the results I obtained:
+
+![Alt text](examples/unconditional_generation?raw=true "Unconditional Generation")
+
+![Alt text](examples/conditional_generation?raw=true "Conditional Generation")
