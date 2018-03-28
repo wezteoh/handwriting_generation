@@ -36,6 +36,8 @@ python train.py --task 'synthesis'
                         help='number of epochs')
     parser.add_argument('--learning_rate', type=float, default=8E-4,
                         help='learning rate')
+    parser.add_argument('--decay_rate', type=float, default=0.99,
+                        help='lr decay rate for adam optimizer per epoch')
     parser.add_argument('--num_clusters', type=int, default=20,
                         help='number of gaussian mixture clusters for stroke prediction')
     parser.add_argument('--K', type=int, default=10,
@@ -44,8 +46,11 @@ python train.py --task 'synthesis'
 
 3. Some examples of the results I obtained:
 
+#### Unconditional generation
+![Alt_text](examples/unconditional_generation.png?raw=true "Unconditional Generation")
 
-![Unconditional generation](examples/unconditional_generation.png?raw=true "Unconditional Generation")
 
 #### Conditional generation
 ![Alt text](examples/conditional_generation.png?raw=true "Conditional Generation")
+
+
