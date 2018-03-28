@@ -3,15 +3,15 @@ This repository contains a quick modified implementation of Alex Graves' paper: 
 
 ## How to reproduce the results
 1. Run the data preprocessing script to generate required training data 
-'''
+```
 python data_preprocessing.py
-'''
+```
 
 2. Run training script specifying the task (rand_write or synthesis)
-'''
+```
 python train.py --task 'rand_write'
-'''
+```
 
-'''
+```
 python train.py --task 'synthesis'
-'''
+```
