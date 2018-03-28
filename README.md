@@ -3,7 +3,7 @@ This repository contains a quick modified implementation of Alex Graves' paper: 
 
 
 ### The results I obtained
-1. Default Archintecture: 2-layer LSTM network with skip connections. A window layer is implemented for the handwriting synthesis task (conditional handwriting generation) as adapted from Alex Graves' work.
+1. Default Architecture: 2-layer LSTM network with skip connections. A window layer is implemented for the handwriting synthesis task (conditional handwriting generation) as adapted from Alex Graves' work.
 
 2. The results shown here are obtained by training using the default configurations below for 50 epochs and 60 epchs respectively for each task. The training is surprisingly stable even with 800 timesteps. Learning rate annealing is implemented but not used by default.
 
