@@ -1,7 +1,7 @@
 # Handwriting Generation
 This repository contains a quick modified implementation of Alex Graves' paper: [Generating Sequences With Recurrent Neural Networks](https://arxiv.org/abs/1308.0850) using pytorch.
 
-## How to reproduce the results
+### How to reproduce the results
 1. Run the data preprocessing script to generate required training data 
 ```
 python data_preprocessing.py
@@ -17,3 +17,6 @@ python train.py --task 'synthesis'
 ```
 
 3. The trained models will be saved to the folder 'save'. Change the file name in generate.py and visualize the results on Results.ipynb.
+
+### The results obtained
+1. The results shown here are obtained by training with the default configurations for 50 epochs and 60 epchs respectively for each task.
