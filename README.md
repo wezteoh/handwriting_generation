@@ -18,7 +18,7 @@ python train.py --task 'synthesis'
 
 3. The trained models will be saved to the folder 'save'. Change the file name in generate.py and visualize the results on Results.ipynb.
 
-### The results obtained
+### The results I obtained
 1. Default Archintecture: 2-layer LSTM network with skip connections. A window layer is implemented for the handwriting synthesis task as adapted from Alex Graves' work.
 
 2. The results shown here are obtained by training the with the default configurations for 50 epochs and 60 epchs respectively for each task. The training is surprisingly stable even with 800 timesteps. Learning rate annealing is implemented but not used by default.
@@ -44,8 +44,8 @@ python train.py --task 'synthesis'
 
 3. Some examples of the results I obtained:
 
-![Alt text](examples/unconditional_generation.png?raw=true "Unconditional Generation")
 #### Unconditional generation
+![Alt text](examples/unconditional_generation.png?raw=true "Unconditional Generation")
 
-![Alt text](examples/conditional_generation.png?raw=true "Conditional Generation")
 #### Conditional generation
+![Alt text](examples/conditional_generation.png?raw=true "Conditional Generation")
