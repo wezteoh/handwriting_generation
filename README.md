@@ -7,7 +7,7 @@ This repository contains a quick modified implementation of Alex Graves' paper: 
 python data_preprocessing.py
 ```
 
-2. Run training script specifying the task (rand_write or synthesis)
+2. Run training script specifying the task (for unconditional or conditional handwriting generation)
 ```
 python train.py --task 'rand_write'
 ```
@@ -15,3 +15,5 @@ python train.py --task 'rand_write'
 ```
 python train.py --task 'synthesis'
 ```
+
+3. The trained models will be saved to the folder 'save'. Change the file name in generate.py and visualize the results on Results.ipynb.
