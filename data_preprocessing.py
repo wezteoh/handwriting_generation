@@ -32,10 +32,10 @@ for i in range(len(validation_strokes)):
     validation_masks[i][0:len(validation_strokes[i])-1] = 1
     validation_strokes[i] = np.vstack([validation_strokes[i], np.zeros((1201-len(validation_strokes[i]), 3))])
 
-np.save('train_strokes_800', np.stack(train_strokes))
-np.save('train_masks_800', train_masks)
-np.save('validation_strokes_800', np.stack(validation_strokes))
-np.save('validation_masks_800', validation_masks)
+np.save('data/train_strokes_800', np.stack(train_strokes))
+np.save('data/train_masks_800', train_masks)
+np.save('data/validation_strokes_800', np.stack(validation_strokes))
+np.save('data/validation_masks_800', validation_masks)
 
 # convert each text sentence to an array of onehots
 char_list = ' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,."\'?-'
@@ -85,11 +85,11 @@ validation_onehot_800 = np.stack(validation_onehot_800)
 validation_text_masks = np.stack(validation_text_masks)
 validation_text_lens = np.array([[len(a)] for a in validation_texts])
 
-np.save('train_onehot_800', train_onehot_800)
-np.save('validation_onehot_800', validation_onehot_800)
-np.save('train_text_masks', train_text_masks)
-np.save('validation_text_masks', validation_text_masks)
-np.save('train_text_lens', train_text_lens)
-np.save('validation_text_lens', validation_text_lens)
+np.save('data/train_onehot_800', train_onehot_800)
+np.save('data/validation_onehot_800', validation_onehot_800)
+np.save('data/train_text_masks', train_text_masks)
+np.save('data/validation_text_masks', validation_text_masks)
+np.save('data/train_text_lens', train_text_lens)
+np.save('data/validation_text_lens', validation_text_lens)
 
 

@@ -45,8 +45,8 @@ def main():
     args = parser.parse_args()
     
     # prepare training data
-    train_data = [np.load('train_strokes_800.npy'), np.load('train_masks_800.npy'), np.load('train_onehot_800.npy'),
-                np.load('train_text_lens.npy')]
+    train_data = [np.load('data/train_strokes_800.npy'), np.load('data/train_masks_800.npy'), np.load('data/train_onehot_800.npy'),
+                np.load('data/train_text_lens.npy')]
     for _ in range(len(train_data)):
         train_data[_] =torch.from_numpy(train_data[_]).type(torch.FloatTensor)
         if cuda:
@@ -57,8 +57,8 @@ def main():
         train_data, batch_size=args.batch_size, shuffle=True, drop_last=True)
         
     # prepare validation data
-    validation_data = [np.load('validation_strokes_800.npy'), np.load('validation_masks_800.npy'), 
-                    np.load('validation_onehot_800.npy'), np.load('validation_text_lens.npy')]
+    validation_data = [np.load('data/validation_strokes_800.npy'), np.load('data/validation_masks_800.npy'), 
+                    np.load('data/validation_onehot_800.npy'), np.load('data/validation_text_lens.npy')]
     for _ in range(len(validation_data)):
         validation_data[_] = torch.from_numpy(validation_data[_]).type(torch.FloatTensor)
         if cuda:

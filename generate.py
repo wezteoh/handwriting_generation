@@ -8,7 +8,8 @@ import matplotlib.pyplot as plt
 # find gpu 
 cuda = torch.cuda.is_available()
 
-def generate_unconditionally(cell_size=400, num_clusters=20, steps=800, random_state=700, state_dict_file='save/rand_write_best.pt'):
+def generate_unconditionally(cell_size=400, num_clusters=20, steps=800, random_state=700, \
+                                state_dict_file='trained_models/unconditional_epoch_50.pt'):
     
     model = LSTMRandWriter(cell_size, num_clusters)
     # load trained model weights
@@ -60,7 +61,7 @@ def generate_unconditionally(cell_size=400, num_clusters=20, steps=800, random_s
     
 
 def generate_conditionally(text, cell_size=400, num_clusters=20, K=10, random_state=700, \
-                            bias=1., bias2=1., state_dict_file='save/synthesis_best.pt'):
+                            bias=1., bias2=1., state_dict_file='trained_models/conditional_epoch_60.pt'):
     
     char_to_code = torch.load('char_to_code.pt')
     np.random.seed(random_state)
