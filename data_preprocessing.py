@@ -3,9 +3,22 @@
 import numpy as np
 import torch
 
+import numpy as np
+# save np.load
+np_load_old = np.load
+
+# modify the default parameters of np.load
+np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
+
 strokes = np.load('data/strokes.npy', encoding='latin1')
 with open('data/sentences.txt') as f:
     texts = f.readlines()
+    
+    
+# restore np.load for future normal usage
+np.load = np_load_old
+
+
     
 train_strokes = []
 train_texts = []
@@ -36,6 +49,8 @@ np.save('data/train_strokes_800', np.stack(train_strokes))
 np.save('data/train_masks_800', train_masks)
 np.save('data/validation_strokes_800', np.stack(validation_strokes))
 np.save('data/validation_masks_800', validation_masks)
+
+
 
 # convert each text sentence to an array of onehots
 char_list = ' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,."\'?-'
