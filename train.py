@@ -119,14 +119,14 @@ def rand_write_train(args, train_loader, validation_loader):
             y = Variable(data, requires_grad=False)
             loss = -log_likelihood(end, weights, mu_1, mu_2, log_sigma_1, log_sigma_2, rho, y, masks)/torch.sum(masks)
             loss.backward()
-            train_loss += loss.data[0]
+            train_loss += loss.item()
             optimizer.step()
             
             if batch_idx % 10 == 0:
                 print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(\
                     epoch+1, batch_idx * len(data), len(train_loader.dataset),
                     100. * batch_idx / len(train_loader),
-                    loss.data[0]))
+                    loss.item()))
         
         # update training performance
         print('====> Epoch: {} Average train loss: {:.4f}'.format(\
@@ -148,7 +148,7 @@ def rand_write_train(args, train_loader, validation_loader):
         outputs = model(y, (h1_init, c1_init), (h2_init, c2_init))
         end, weights, mu_1, mu_2, log_sigma_1, log_sigma_2, rho , prev, prev2 = outputs 
         loss = -log_likelihood(end, weights, mu_1, mu_2, log_sigma_1, log_sigma_2, rho, y, masks)/torch.sum(masks)
-        validation_loss = loss.data[0]
+        validation_loss = loss.item()
         print('====> Epoch: {} Average validation loss: {:.4f}'.format(\
             epoch+1, validation_loss))
         v_loss.append(validation_loss)
@@ -228,13 +228,13 @@ def synthesis_train(args, train_loader, validation_loader):
             y = Variable(data, requires_grad=False)
             loss = -log_likelihood(end, weights, mu_1, mu_2, log_sigma_1, log_sigma_2, rho, y, masks)/torch.sum(masks)
             loss.backward()
-            train_loss += loss.data[0]
+            train_loss += loss.item()
             optimizer.step()
             if batch_idx % 10 == 0:
                 print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                     epoch+1, batch_idx * len(data), len(train_loader.dataset),
                     100. * batch_idx / len(train_loader),
-                    loss.data[0]))
+                    loss.item()))
     
         print('====> Epoch: {} Average train loss: {:.4f}'.format(
             epoch+1, train_loss/(len(train_loader.dataset)//args.batch_size)))
@@ -258,7 +258,7 @@ def synthesis_train(args, train_loader, validation_loader):
         outputs = model(x, onehots, text_lens, w_old, kappa_old, (h1_init, c1_init), (h2_init, c2_init))
         end, weights, mu_1, mu_2, log_sigma_1, log_sigma_2, rho, w, kappa, prev, prev2, old_phi = outputs
         loss = -log_likelihood(end, weights, mu_1, mu_2, log_sigma_1, log_sigma_2, rho, y, masks)/torch.sum(masks)
-        validation_loss = loss.data[0]
+        validation_loss = loss.item()
         print('====> Epoch: {} Average validation loss: {:.4f}'.format(\
             epoch+1, validation_loss))
         v_loss.append(validation_loss)

@@ -36,16 +36,16 @@ def generate_unconditionally(cell_size=400, num_clusters=20, steps=800, random_s
         
         # sample end stroke indicator
         prob_end = end.data[0][0][0]        
-        sample_end = np.random.binomial(1,prob_end)
+        sample_end = np.random.binomial(1,prob_end.cpu())
         sample_index = np.random.choice(range(20),p = weights.data[0][0].cpu().numpy())
-        
+                
         # sample new stroke point
-        mu = np.array([mu_1.data[0][0][sample_index], mu_2.data[0][0][sample_index]])
-        v1 = log_sigma_1.exp().data[0][0][sample_index]**2
-        v2 = log_sigma_2.exp().data[0][0][sample_index]**2
-        c = p.data[0][0][sample_index]*log_sigma_1.exp().data[0][0][sample_index]\
-            *log_sigma_2.exp().data[0][0][sample_index]
-        cov = np.array([[v1,c],[c,v2]])
+        mu = np.array([mu_1.data[0][0][sample_index].item(), mu_2.data[0][0][sample_index].item()])
+        v1 = log_sigma_1.exp().data[0][0][sample_index].item()**2
+        v2 = log_sigma_2.exp().data[0][0][sample_index].item()**2
+        c = p.data[0][0][sample_index].item()*log_sigma_1.exp().data[0][0][sample_index].item()\
+            *log_sigma_2.exp().data[0][0][sample_index].item()
+        cov = np.array([[v1,c],[c,v2]])        
         sample_point = np.random.multivariate_normal(mu, cov)
         
         out = np.insert(sample_point,0,sample_end)
@@ -113,17 +113,17 @@ def generate_conditionally(text, cell_size=400, num_clusters=20, K=10, random_st
         
         #bernoulli sample
         prob_end = end.data[0][0][0]
-        sample_end = np.random.binomial(1,prob_end)
+        sample_end = np.random.binomial(1,prob_end.cpu())
 
         #mog sample
         sample_index = np.random.choice(range(20),p = weights.data[0][0].cpu().numpy())
-        mu = np.array([mu_1.data[0][0][sample_index], mu_2.data[0][0][sample_index]])
+        mu = np.array([mu_1.data[0][0][sample_index].item(), mu_2.data[0][0][sample_index].item()])
         log_sigma_1 = log_sigma_1 - bias2
         log_sigma_2 = log_sigma_2 - bias2
-        v1 = (log_sigma_1).exp().data[0][0][sample_index]**2
-        v2 = (log_sigma_2).exp().data[0][0][sample_index]**2
-        c = rho.data[0][0][sample_index]*log_sigma_1.exp().data[0][0][sample_index]\
-            *log_sigma_2.exp().data[0][0][sample_index]
+        v1 = (log_sigma_1).exp().data[0][0][sample_index].item()**2
+        v2 = (log_sigma_2).exp().data[0][0][sample_index].item()**2
+        c = rho.data[0][0][sample_index]*log_sigma_1.exp().data[0][0][sample_index].item()\
+            *log_sigma_2.exp().data[0][0][sample_index].item()
         cov = np.array([[v1,c],[c,v2]])
         sample_point = np.random.multivariate_normal(mu, cov)
         
